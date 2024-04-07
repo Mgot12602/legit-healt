@@ -57,9 +57,11 @@ I have some experience with NextJS.
 
 -I didn't show any title for the User Details, maybe that would be considered and also a back button to the list of users.
 
--When you are in page 2 and change the items per page to 12 it shows empty. That coul be prevented.
+-When you are in page 2 and change the items per page to 12 it shows empty. That could be prevented.
 
 -I would improve the loading status UI and the error displaying in the pages.Instead I would like to use the Skeleton component of MUI.
+
+-All the imports from MUI could be done by accessing the component of the package directly, instead of importing the entire package to improve performance, specially for development.
 
 ## Doubts
 
