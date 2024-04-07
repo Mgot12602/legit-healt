@@ -1,25 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { ErrorBoundary } from 'react-error-boundary';
+import UserList from './pages/ListUsers';
+import UserDetails from './pages/UserDetails';
+import UserForm from './pages/CreateUser';
+import ErrorPage from './pages/ErrorPage';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import  CssBaseline  from '@mui/material/CssBaseline';
+import Layout from './components/Layout';
+
 
 function App() {
+
+const queryClient=new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+    },
+  },
+});
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  
+    <ErrorBoundary FallbackComponent={ErrorPage}>
+      <CssBaseline/>
+       <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+      <Layout>
+        <Routes>
+          <Route path='/' Component={UserList} />
+          <Route path='/user/:id' Component={UserDetails} />
+          <Route path='/create' Component={UserForm} />
+        </Routes>
+        </Layout>
+      </BrowserRouter>
+      </QueryClientProvider>
+    </ErrorBoundary>
+  
   );
 }
 
