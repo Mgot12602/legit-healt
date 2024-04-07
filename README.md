@@ -1,6 +1,8 @@
 # Getting Started
 
-First in the terminal `npm install` to install all the dependencies. Then `npm start` to start the project. The project will be running on `http://localhost:3000/` by default.
+Clone the project with `git@github.com:Mgot12602/legit-healt.git`
+Navigate to the project folder with `cd legit-healt`.
+Once in the project `npm install` to install all the dependencies. Then `npm start` to start the project. The project will be running on `http://localhost:3000/` by default.
 
 ## Considerations building the project
 
