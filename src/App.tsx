@@ -1,13 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import  CssBaseline  from '@mui/material/CssBaseline';
 import UserList from './pages/ListUsers';
 import UserDetails from './pages/UserDetails';
 import UserForm from './pages/CreateUser';
 import ErrorPage from './pages/ErrorPage';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import  CssBaseline  from '@mui/material/CssBaseline';
 import Layout from './components/Layout';
+import {SnackbarProvider} from './context/SnackBarProvider';
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
 const queryClient=new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000 * 60 * 5, // 5 minutes
+      staleTime: 1000 * 60 * 5, // caches requests 5 minutes
     },
   },
 });
@@ -25,6 +26,7 @@ const queryClient=new QueryClient({
     <ErrorBoundary FallbackComponent={ErrorPage}>
       <CssBaseline/>
        <QueryClientProvider client={queryClient}>
+        <SnackbarProvider>  
       <BrowserRouter>
       <Layout>
         <Routes>
@@ -34,6 +36,7 @@ const queryClient=new QueryClient({
         </Routes>
         </Layout>
       </BrowserRouter>
+      </SnackbarProvider>
       </QueryClientProvider>
     </ErrorBoundary>
   

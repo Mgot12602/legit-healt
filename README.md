@@ -1,46 +1,39 @@
-# Getting Started with Create React App
+# Getting Started
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+First in the terminal `npm install` to install all the dependencies. Then `npm start` to start the project. The project will be running on `http://localhost:3000/` by default.
 
-## Available Scripts
+## Considerations building the project
 
-In the project directory, you can run:
+-Mappers:
+Useed mappers to transform the data from the api to the format that the components need, or viceversa.
+With this approach the data is more consistant and it is strictly typed ensuring the contract between the components and the api.
 
-### `npm start`
+-Api classes:
+The api class provides a common base url, api call logic and error handling for all the api calls.
+Extended this class with static methods to encapsulate the api calls, this way the components are not aware of the api call details so it looks more clean. In case in the future there is a new entites, it will be scalable and still clean and easy.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+-Error handling:
+The entire app is wrapped with an error boundary because I think it is a good practice to show an error page in production in case something breaks. I used a library because error boundaries are not yet available for functional components in react.
+Api errors are handled first through the Api class and in last instance by react-query.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+-Caching:
+The data is cached by react-query, with a stale time of 5 minutes.
 
-### `npm test`
+-Components:
+The components are not very refactored, they could be even cleaner, but at some point I think that it is sometimes better to find all the code in the same page than to have to jump between files to understand the logic unless the moment they need to be reused by another component. It is always a compromise but even that I tried not to make them too long.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+-Typescript:
+I have the personal preference use immplicit types as much as possible so the code is easier to maintain. The only part I used return types are the mappers because they strictly need to follow a contract.
 
-### `npm run build`
+-Snackbar:
+I created a snack bar to show the errors in a more user friendly without using a library. I used react context, because the state wouldn't change too often. I also could have used a third party library, but I preffer to rely as much as possible on the native react features.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Libraries used
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+-material UI for the design of the project.
+-react-router-dom for the routing of the project.
+-react-query for the data fetching.
+-react-hook-form for the form validation.
+-CRA because I am more confident with it than NextJs but
+I have some experience with NextJS.
+-react-error-boundary for error boundary handling.

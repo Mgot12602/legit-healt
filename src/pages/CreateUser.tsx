@@ -1,26 +1,33 @@
-import React from 'react';
-import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+import { useForm, Controller, SubmitHandler} from 'react-hook-form';
 import { TextField, Button, Paper, Box, Typography, Stack } from '@mui/material';
-import Layout from '../components/Layout';
 import { useMutation } from 'react-query';
 import UsersApi from '../service/UsersApi';
 import { mapUserFormDataToApi } from '../mappers/userMappers';
 import { IFormInputs } from '../interfaces/interfaces';
-
-
-
-
+import {useSnackBarContext} from '../context/SnackBarProvider';
 
 const CreateUser = () => {
-  const { handleSubmit, control } = useForm<IFormInputs>();
+  const {showSuccess,showError}=useSnackBarContext();
+  const { handleSubmit, control,reset } = useForm<IFormInputs>();
 
-  const mutation = useMutation((newUser: IFormInputs) => UsersApi.createUser(mapUserFormDataToApi(newUser)));
+  const {mutate,error} = useMutation((newUser: IFormInputs) => UsersApi.createUser(mapUserFormDataToApi(newUser)),{
+    onSuccess: () => {
+      showSuccess('User created successfully');
+      reset({
+        firstName: '',
+        lastName: '',
+        email: '',
+      });
+    },
+    onError: () => {
+      showError(`User could not be created. Error:${error}`);
+    }
+  });
 
   const onSubmit: SubmitHandler<IFormInputs> = (data) => {
-    mutation.mutate(data);
+    mutate(data);
   };
   
-
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <Paper elevation={3} sx={{ p: 4, width:'400px' }}>

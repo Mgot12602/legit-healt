@@ -45,3 +45,9 @@ export interface IUsersListApiData {
     text: string;
   };
 }
+
+export interface IUsersList {
+  users: IUser[];
+  currentPage: number;
+  totalPages: number;
+}

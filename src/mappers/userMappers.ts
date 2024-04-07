@@ -2,7 +2,7 @@ import {
   ICreateUserApiData,
   IFormInputs,
   IUser,
-  IUserApiData,
+  IUsersList,
   IUserDetailsApiData,
   IUsersListApiData,
 } from "../interfaces/interfaces";
@@ -15,14 +15,19 @@ export const mapUserFormDataToApi = (
   email: formData.email,
 });
 
-export const mapUsersListApiData = (apiData: IUsersListApiData): IUser[] =>
-  apiData.data.map((user) => ({
+export const mapUsersListApiData = (
+  apiData: IUsersListApiData
+): IUsersList => ({
+  users: apiData.data.map((user) => ({
     id: user.id,
     email: user.email,
     firstName: user.first_name,
     lastName: user.last_name,
     avatar: user.avatar,
-  }));
+  })),
+  currentPage: apiData.page,
+  totalPages: apiData.total_pages,
+});
 
 export const mapUserDetailsApiData = (apiData: IUserDetailsApiData): IUser => {
   const { data } = apiData;
