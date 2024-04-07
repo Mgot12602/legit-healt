@@ -1,7 +1,7 @@
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 import NavBar from './NavBar'
 import Footer from './Footer'
-import { Box, Container,Stack } from '@mui/material'
+import {  Container,Stack } from '@mui/material'
 
 const Layout = ({children}:{children:ReactNode}) => {
   return (

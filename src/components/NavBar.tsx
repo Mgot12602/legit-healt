@@ -8,6 +8,7 @@ isActive?{color:'white'}:{color:'black'}
 
 
 const NavBar: React.FC = () => {
+
   return (
     <AppBar position="static" >
       <Toolbar sx={{gap:'2rem'}} >
