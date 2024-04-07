@@ -28,6 +28,13 @@ I have the personal preference use immplicit types as much as possible so the co
 -Snackbar:
 I created a snack bar to show the errors in a more user friendly without using a library. I used react context, because the state wouldn't change too often. I also could have used a third party library, but I preffer to rely as much as possible on the native react features.
 
+-Styling:
+I used material UI for the design of the project with a minimalistic
+styling taking care of the spacing and responsiveness of the components. One consideration is that I try never to use margins or paddings to separate components, always try to use gaps, flex or grid spacing, the MUI Stack component or the material UI spacing system.
+
+-Pagination:
+As I could check in the swagger that there are properties for requesting a certain number of elements i added that to the pagination.
+
 ## Libraries used
 
 -material UI for the design of the project.
@@ -37,3 +44,21 @@ I created a snack bar to show the errors in a more user friendly without using a
 -CRA because I am more confident with it than NextJs but
 I have some experience with NextJS.
 -react-error-boundary for error boundary handling.
+
+## Areas of improvement
+
+-The api calls to the user details are not cached, I tried to add an option in the QueryClient{ refetchOnWindowFocus: false} but it didn't work. I would need to investigate more about it as it is the first time I am using this library.
+
+-Could add Network connection error handling, and show a snackbar when you are offline with a message to the user.
+
+-Would be nice a more appealing UI design specially in the user details page.
+
+-I didn't show any title for the User Details, maybe that would be considered and also a back button to the list of users.
+
+-When you are in page 2 and change the items per page to 12 it shows empty. That coul be prevented.
+
+-I would improve the loading status UI and the error displaying in the pages.Instead I would like to use the Skeleton component of MUI.
+
+## Doubts
+
+-In the test instructions it is said to add more details of the user in the details page but I could not find any other keys than the ones I was already showing.
