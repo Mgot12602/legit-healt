@@ -8,6 +8,8 @@ Once in the project `npm install` to install all the dependencies.
 
 Then `npm start` to start the project. The project will be running on `http://localhost:3000/` by default.
 
+Alternatively, you can run the project in docker with navigating to the project folder `cd legit-healt`, starting your Docker Desktop (Windows) or `sudo systemctl start docker` (Linux), give permissions to make the script executable `chmod +x docker-run.sh` and then run the script `./docker-run.sh`. After installation complete the project will be running on `http://localhost:80/`.
+
 ## Considerations building the project
 
 -Mappers:
